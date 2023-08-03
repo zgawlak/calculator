@@ -90,3 +90,4 @@ operatorButtons.forEach((button) => {
     button.addEventListener('click', chooseOperator);
 });
 clearButton.addEventListener('click', clearCalculations);
+equalsButton.addEventListener('click', calculate);
