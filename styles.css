@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
+
 body {
     height: 100vh;
     margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Borel', cursive;
 }
 
 .container {
@@ -13,20 +15,22 @@ body {
 }
 
 .calculator {
-    width: 360px;
+    width: 25%;
+    max-width: 400px;
+    min-width: 250px;
     padding: 24px;
-    border: 2px solid black;
     border-radius: 10px;
     background-color: #324462;
+    box-shadow: 5px 5px 10px #ddd;
 }
 
 .display {
     padding: 10px 20px;
     text-align: right;
-    border: 2px solid black;
     border-radius: 5px;
     margin-bottom: 24px;
-    background-color: #fff;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(253, 255, 220, 1) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .wrap-text {
@@ -36,12 +40,13 @@ body {
 
 .prev-calc {
     font-size: 20px;
-    min-height: 32px;
+    min-height: 40px;
 }
 
 .current-calc {
     font-size: 40px;
-    min-height: 48px;
+    min-height: 20px;
+    line-height: 120%;
 }
 
 button {
@@ -50,19 +55,27 @@ button {
     border-radius: 5px;
     border: none;
     font-size: 20px;
+    border: 2px solid #fff;
+}
+
+button:hover {
+    filter: brightness(85%);
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 8px;
+    grid-gap: 12px;
 }
 
-.num-buttons {
-    background-color: #ffffff;
+.num-buttons,
+.decimal-button {
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(225, 239, 255, 1) 100%);
 }
 
-.op-buttons {
+.op-buttons,
+.equals-button {
     background-color: #9c7e4f;
     color: #fff;
 }
