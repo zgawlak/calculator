@@ -2,7 +2,7 @@
 
 let firstNumber = 0;
 let secondNumber = 0;
-let operator = "";
+let operator = null;
 
 let currentCalc = document.querySelector('.current-calc');
 let prevCalc = document.querySelector('.prev-calc');
@@ -44,14 +44,26 @@ function operate(first, second) {
 }
 
 function appendNumber(e) {
-    if (currentCalc.textContent === "0") resetScreen();
+    if (currentCalc.textContent === "0") clearCurrentCalc();
     currentCalc.textContent += e.target.textContent;
 }
 
-function resetScreen() {
+function chooseOperator(e) {
+    if (operator !== null) calculate();
+    operator = e.target.textContent;
+    firstNumber = currentCalc.textContent;
+    prevCalc.textContent = `${firstNumber} ${operator}`;
+    clearCurrentCalc();
+}
+
+function clearCurrentCalc() {
     currentCalc.textContent = "";
 }
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', appendNumber);
+});
+
+operatorButtons.forEach((button) => {
+    button.addEventListener('click', chooseOperator);
 });
