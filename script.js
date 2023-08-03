@@ -1,7 +1,7 @@
 "use strict";
 
-let firstNumber = 0;
-let secondNumber = 0;
+let firstNumber = '';
+let secondNumber = '';
 let operator = null;
 
 let currentCalc = document.querySelector('.current-calc');
@@ -27,19 +27,17 @@ function divide(a, b) {
 }
 
 function operate(first, second) {
+    first = Number(first);
+    second = Number(second);
     switch (operator) {
         case "+":
-            add(first, second);
-            break;
+            return add(first, second);
         case "-":
-            subtract(first, second);
-            break;
-        case "*":
-            multiply(first, second);
-            break;
-        case "/":
-            divide(first, second);
-            break;
+            return subtract(first, second);
+        case "x":
+            return multiply(first, second);
+        case "÷":
+            return divide(first, second);
     }
 }
 
@@ -58,6 +56,22 @@ function chooseOperator(e) {
 
 function clearCurrentCalc() {
     currentCalc.textContent = "";
+}
+
+function calculate(){
+    if (operator === null) return
+    if (operator === '÷' && currentCalc.textContent === '0') {
+      alert("Impossible!");
+      return
+    }
+    secondNumber = currentCalc.textContent;
+    currentCalc.textContent = roundNumber(operate(firstNumber, secondNumber));
+    prevCalc.textContent = `${firstNumber} ${operator} ${secondNumber} =`
+    operator = null;
+}
+
+function roundNumber(number) {
+    return Math.round(number * 1000) / 1000;
 }
 
 numberButtons.forEach((button) => {
