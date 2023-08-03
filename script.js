@@ -5,16 +5,16 @@ let secondNumber = '';
 let operator = null;
 let resetCurrentCalc = false;
 
-let currentCalc = document.querySelector('.current-calc');
-let prevCalc = document.querySelector('.prev-calc');
+const currentCalc = document.querySelector('.current-calc');
+const prevCalc = document.querySelector('.prev-calc');
 
-let numberButtons = document.querySelectorAll('.num-buttons');
-let decimalButton = document.querySelector('.decimal-button');
-let operatorButtons = document.querySelectorAll('.op-buttons');
+const numberButtons = document.querySelectorAll('.num-buttons');
+const decimalButton = document.querySelector('.decimal-button');
+const operatorButtons = document.querySelectorAll('.op-buttons');
 
-let equalsButton = document.querySelector('.equals-button');
-let clearButton = document.querySelector('.clear-button');
-let deleteButton = document.querySelector('.delete-button');
+const equalsButton = document.querySelector('.equals-button');
+const clearButton = document.querySelector('.clear-button');
+const deleteButton = document.querySelector('.delete-button');
 
 function add(a, b) {
     return a + b;
