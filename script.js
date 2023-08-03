@@ -3,6 +3,7 @@
 let firstNumber = '';
 let secondNumber = '';
 let operator = null;
+let resetCurrentCalc = false;
 
 let currentCalc = document.querySelector('.current-calc');
 let prevCalc = document.querySelector('.prev-calc');
@@ -47,11 +48,12 @@ function operate(first, second) {
 }
 
 function appendNumber(e) {
-    if (currentCalc.textContent === "0") clearCurrentCalc();
+    if (currentCalc.textContent === "0" || resetCurrentCalc) clearCurrentCalc();
     currentCalc.textContent += e.target.textContent;
 }
 
 function appendDecimal() {
+    if (resetCurrentCalc) clearCurrentCalc();
     if (currentCalc.textContent === '')
         currentCalc.textContent = '0'
     if (currentCalc.textContent.includes('.')) return
@@ -63,14 +65,16 @@ function chooseOperator(e) {
     operator = e.target.textContent;
     firstNumber = currentCalc.textContent;
     prevCalc.textContent = `${firstNumber} ${operator}`;
+    resetCurrentCalc = true;
 }
 
 function clearCurrentCalc() {
     currentCalc.textContent = "";
+    resetCurrentCalc = false;
 }
 
 function calculate() {
-    if (operator === null) return
+    if (operator === null || resetCurrentCalc) return
     if (operator === '÷' && currentCalc.textContent === '0') {
         alert("Impossible!");
         return
