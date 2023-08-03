@@ -9,6 +9,7 @@ let prevCalc = document.querySelector('.prev-calc');
 let numberButtons = document.querySelectorAll('.num-buttons');
 let operatorButtons = document.querySelectorAll('.op-buttons');
 let equalsButton = document.querySelector('.equals-button');
+let clearButton = document.querySelector('.clear-button');
 
 function add(a, b) {
     return a + b;
@@ -74,10 +75,18 @@ function roundNumber(number) {
     return Math.round(number * 1000) / 1000;
 }
 
+function clearCalculations() {
+    currentCalc.textContent = '0';
+    prevCalc.textContent = '';
+    firstNumber = '';
+    secondNumber = '';
+    operator = null;
+}
+
 numberButtons.forEach((button) => {
     button.addEventListener('click', appendNumber);
 });
-
 operatorButtons.forEach((button) => {
     button.addEventListener('click', chooseOperator);
 });
+clearButton.addEventListener('click', clearCalculations);
