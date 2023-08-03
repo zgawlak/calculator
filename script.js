@@ -6,10 +6,14 @@ let operator = null;
 
 let currentCalc = document.querySelector('.current-calc');
 let prevCalc = document.querySelector('.prev-calc');
+
 let numberButtons = document.querySelectorAll('.num-buttons');
+let decimalButton = document.querySelector('.decimal-button');
 let operatorButtons = document.querySelectorAll('.op-buttons');
+
 let equalsButton = document.querySelector('.equals-button');
 let clearButton = document.querySelector('.clear-button');
+let deleteButton = document.querySelector('.delete-button');
 
 function add(a, b) {
     return a + b;
@@ -47,23 +51,29 @@ function appendNumber(e) {
     currentCalc.textContent += e.target.textContent;
 }
 
+function appendDecimal() {
+    if (currentCalc.textContent === '')
+        currentCalc.textContent = '0'
+    if (currentCalc.textContent.includes('.')) return
+    currentCalc.textContent += '.'
+}
+
 function chooseOperator(e) {
     if (operator !== null) calculate();
     operator = e.target.textContent;
     firstNumber = currentCalc.textContent;
     prevCalc.textContent = `${firstNumber} ${operator}`;
-    clearCurrentCalc();
 }
 
 function clearCurrentCalc() {
     currentCalc.textContent = "";
 }
 
-function calculate(){
+function calculate() {
     if (operator === null) return
     if (operator === '÷' && currentCalc.textContent === '0') {
-      alert("Impossible!");
-      return
+        alert("Impossible!");
+        return
     }
     secondNumber = currentCalc.textContent;
     currentCalc.textContent = roundNumber(operate(firstNumber, secondNumber));
@@ -73,6 +83,12 @@ function calculate(){
 
 function roundNumber(number) {
     return Math.round(number * 1000) / 1000;
+}
+
+function deleteNumber() {
+    currentCalc.textContent = currentCalc.textContent
+        .toString()
+        .slice(0, -1);
 }
 
 function clearCalculations() {
@@ -86,8 +102,11 @@ function clearCalculations() {
 numberButtons.forEach((button) => {
     button.addEventListener('click', appendNumber);
 });
+decimalButton.addEventListener('click', appendDecimal);
 operatorButtons.forEach((button) => {
     button.addEventListener('click', chooseOperator);
 });
+
 clearButton.addEventListener('click', clearCalculations);
 equalsButton.addEventListener('click', calculate);
+deleteButton.addEventListener('click', deleteNumber);
