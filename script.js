@@ -68,9 +68,23 @@ function chooseOperator(e) {
     resetCurrentCalc = true;
 }
 
+function deleteNumber() {
+    currentCalc.textContent = currentCalc.textContent
+        .toString()
+        .slice(0, -1);
+}
+
 function clearCurrentCalc() {
     currentCalc.textContent = "";
     resetCurrentCalc = false;
+}
+
+function clearCalculations() {
+    currentCalc.textContent = '0';
+    prevCalc.textContent = '';
+    firstNumber = '';
+    secondNumber = '';
+    operator = null;
 }
 
 function calculate() {
@@ -87,20 +101,6 @@ function calculate() {
 
 function roundNumber(number) {
     return Math.round(number * 1000) / 1000;
-}
-
-function deleteNumber() {
-    currentCalc.textContent = currentCalc.textContent
-        .toString()
-        .slice(0, -1);
-}
-
-function clearCalculations() {
-    currentCalc.textContent = '0';
-    prevCalc.textContent = '';
-    firstNumber = '';
-    secondNumber = '';
-    operator = null;
 }
 
 numberButtons.forEach((button) => {
