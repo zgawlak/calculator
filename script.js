@@ -3,8 +3,6 @@
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = "";
-let currentValue = "";
-let prevValue = "";
 
 let currentCalc = document.querySelector('.current-calc');
 let prevCalc = document.querySelector('.prev-calc');
@@ -44,3 +42,16 @@ function operate(first, second) {
             break;
     }
 }
+
+function appendNumber(e) {
+    if (currentCalc.textContent === "0") resetScreen();
+    currentCalc.textContent += e.target.textContent;
+}
+
+function resetScreen() {
+    currentCalc.textContent = "";
+}
+
+numberButtons.forEach((button) => {
+    button.addEventListener('click', appendNumber);
+});
