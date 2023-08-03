@@ -29,6 +29,11 @@ body {
     background-color: #fff;
 }
 
+.wrap-text {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 .prev-calc {
     font-size: 20px;
     min-height: 32px;
