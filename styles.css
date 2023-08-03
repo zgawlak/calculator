@@ -3,7 +3,7 @@
 body {
     height: 100vh;
     margin: 0;
-    font-family: 'Borel', cursive;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .container {
@@ -40,13 +40,12 @@ body {
 
 .prev-calc {
     font-size: 20px;
-    min-height: 40px;
+    min-height: 32px;
 }
 
 .current-calc {
     font-size: 40px;
-    min-height: 20px;
-    line-height: 120%;
+    min-height: 60px;
 }
 
 button {
