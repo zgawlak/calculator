@@ -97,6 +97,7 @@ function calculate() {
     currentCalc.textContent = roundNumber(operate(firstNumber, secondNumber));
     prevCalc.textContent = `${firstNumber} ${operator} ${secondNumber} =`
     operator = null;
+    resetCurrentCalc = true;
 }
 
 function roundNumber(number) {
