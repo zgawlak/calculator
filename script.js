@@ -47,9 +47,9 @@ function operate(first, second) {
     }
 }
 
-function appendNumber(e) {
+function appendNumber(number) {
     if (currentCalc.textContent === "0" || resetCurrentCalc) clearCurrentCalc();
-    currentCalc.textContent += e.target.textContent;
+    currentCalc.textContent += number;
 }
 
 function appendDecimal() {
@@ -60,9 +60,9 @@ function appendDecimal() {
     currentCalc.textContent += '.'
 }
 
-function chooseOperator(e) {
+function chooseOperator(operatorBtn) {
     if (operator !== null) calculate();
-    operator = e.target.textContent;
+    operator = operatorBtn;
     firstNumber = currentCalc.textContent;
     prevCalc.textContent = `${firstNumber} ${operator}`;
     resetCurrentCalc = true;
@@ -104,12 +104,35 @@ function roundNumber(number) {
     return Math.round(number * 1000) / 1000;
 }
 
+function handleKeyboardInput(e) {
+    if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+    if (e.key === '.') appendDecimal();
+    if (e.key === '=' || e.key === 'Enter') calculate();
+    if (e.key === 'Backspace') deleteNumber();
+    if (e.key === 'Escape') clearCalculations();
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+        chooseOperator(convertKeyToOperator(e.key));
+}
+
+function convertKeyToOperator(operatorKey) {
+    if (operatorKey === '/') return '÷';
+    if (operatorKey === '*') return '×';
+    if (operatorKey === '-') return '−';
+    if (operatorKey === '+') return '+';
+}
+
+window.addEventListener('keydown', handleKeyboardInput);
 numberButtons.forEach((button) => {
-    button.addEventListener('click', appendNumber);
+    button.addEventListener('click', () =>
+    {
+        appendNumber(button.textContent);
+    });
 });
 decimalButton.addEventListener('click', appendDecimal);
 operatorButtons.forEach((button) => {
-    button.addEventListener('click', chooseOperator);
+    button.addEventListener('click', () => {
+        chooseOperator(button.textContent);
+    });
 });
 
 clearButton.addEventListener('click', clearCalculations);
